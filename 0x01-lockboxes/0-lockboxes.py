@@ -16,9 +16,11 @@ def canUnlockAll(boxes):
         return True
 
     def dfs(box_index, visited):
+        if visited[box_index]:
+            return
         visited[box_index] = True
         for key in boxes[box_index]:
-            if key < len(boxes) and not visited[key]:
+            if key < len(boxes):
                 dfs(key, visited)
 
     n = len(boxes)
