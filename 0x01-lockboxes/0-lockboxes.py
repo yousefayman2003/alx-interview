@@ -12,6 +12,9 @@ def canUnlockAll(boxes):
         Returns:
             True if all boxes can be opened, else return False
     """
+    if len(boxes) <= 1 or boxes == [[]]:
+        return True
+
     visited = set()
 
     def dfs(i):
