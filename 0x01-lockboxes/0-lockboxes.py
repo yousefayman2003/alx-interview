@@ -15,22 +15,13 @@ def canUnlockAll(boxes):
     if len(boxes) <= 1 or boxes == [[]]:
         return True
 
-    visited = set()
+    def dfs(box_index, visited):
+        visited[box_index] = True
+        for key in boxes[box_index]:
+            if key < len(boxes) and not visited[key]:
+                dfs(key, visited)
 
-    def dfs(i):
-        """
-            Perform depth first search on boxes keys
-
-            i (int): index of box to open
-        """
-        if i in visited:
-            return
-
-        visited.add(i)
-        for n in boxes[i]:
-            dfs(n)
-
-    # Start DFS
-    dfs(0)
-
-    return len(visited) == len(boxes)
+    n = len(boxes)
+    visited = [False] * n
+    dfs(0, visited)
+    return all(visited)
