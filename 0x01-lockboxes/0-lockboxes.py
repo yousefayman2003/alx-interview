@@ -12,21 +12,16 @@ def canUnlockAll(boxes):
         Returns:
             True if all boxes can be opened, else return False
     """
-    if type(boxes) is not list or len(boxes) == 0:
+    if not isinstance(boxes, list) or len(boxes) == 0:
         return False
 
-    if len(boxes) <= 1 or boxes == [[]]:
-        return True
+    for k in range(1, len(boxes) - 1):
+        boxes_checked = False
+        for idx, box in enumerate(boxes):
+            if k in box and k != idx:
+                boxes_checked = True
+                break
+        if not boxes_checked:
+            return False
 
-    def dfs(box_index, visited):
-        if visited[box_index]:
-            return
-        visited[box_index] = True
-        for key in boxes[box_index]:
-            if key < len(boxes):
-                dfs(key, visited)
-
-    n = len(boxes)
-    visited = [False] * n
-    dfs(0, visited)
-    return all(visited)
+    return True
