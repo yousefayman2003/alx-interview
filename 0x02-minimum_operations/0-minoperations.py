@@ -3,7 +3,7 @@
 
 
 def minOperations(n: int) -> int:
-    """ 
+    """
         calculates the fewest number of operations needed
         to result in exactly n H characters
 
@@ -15,7 +15,7 @@ def minOperations(n: int) -> int:
     """
     if n < 2:
         return 0
-    
+
     ops = 0
     min_ops = 2
     while n > 1:
